@@ -1,0 +1,14 @@
+error:
+  item-not-found: "&#98FB98[MythicRewards] &cWe can't find sell tick {item}!"
+  save-item-not-found: "&#98FB98[MythicRewards] &cWe can't find this save item called {item}!"
+  args: "&#98FB98[MythicRewards] &cWrong command usage, if you need help, use /shop help!"
+  in-game: "&#98FB98[MythicRewards] &cYou have to use this command in game!"
+  miss-permission: "&#98FB98[MythicRewards] &cYou don't have permission to use this command!"
+
+plugin:
+  reloaded: "&#98FB98[MythicRewards] &fPlugin reloaded!"
+  saved: "&#98FB98[MythicRewards] &fItem Saved!"
+  generated: "&#98FB98[MythicRewards] &fGenerated hold item's item format at plugin config folder, please copy them into your menu or shop configs!"
+
+command-tab:
+  type-item-id: "[Type Item ID you want]"

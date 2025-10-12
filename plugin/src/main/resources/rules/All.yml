@@ -1,0 +1,30 @@
+match-entity:
+  mythicmobs:
+    - 'Example'
+
+# Means 5 minutes, 20 ticks = 1 second
+time-out-ticks: 6000
+
+prevent-vanilla-drops: false
+
+general-actions:
+  1:
+    type: message
+    messages:
+      - '&#FFEE00======================='
+      - '&#FF5555⚔ &l{entity-name} &r&#FF4444has been defeated! ⚔'
+      - '&#00FFAA✨TOP DAMAGE DEALERS✨'
+      - '@1 &#FF4500🥇 &lFirst: &#FF69B4{player_1} &#FFFFFF(&#32CD32{damage_1}&#FFFFFF | &#1E90FF{percentage_1}%&#FFFFFF)'
+      - '@2 &#1E90FF🥈 &lSecond: &#00FFFF{player_2} &#FFFFFF(&#32CD32{damage_2}&#FFFFFF | &#FF69B4{percentage_2}%&#FFFFFF)'
+      - '@3 &#32CD32🥉 &lThird: &#FFD700{player_3} &#FFFFFF(&#32CD32{damage_3}&#FFFFFF | &#FF4500{percentage_3}%&#FFFFFF)'
+      - '&#FFAA00✨Your Rank: &#FF00FF {rank} &#FFFFFF(&#32CD32{damage}/{total-damage}&#FFFFFF | &#1E90FF{percentage}%&#FFFFFF)'
+      - '&#FFEE00======================='
+  2:
+    type: message
+    message: TEST
+  3:
+    type: message
+    message: TEST2
+  4:
+    type: message
+    message: TEST3

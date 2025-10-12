@@ -1,0 +1,27 @@
+name: MythicRewards
+version: '${project.version}'
+main: cn.superiormc.mythicrewards.MythicRewards
+api-version: '1.14'
+folia-supported: true
+author: PQguanfang
+softdepend:
+  - MMOItems
+  - MythicLib
+  - ItemsAdder
+  - Oraxen
+  - EcoItems
+  - EcoArmor
+  - PlaceholderAPI
+  - MythicMobs
+  - CraftEngine
+  - NeigeItems
+  - ExecutableItems
+  - MythicChanger
+  - NBTAPI
+commands:
+  mythicrewards:
+    aliases:
+      - "mrewards"
+      - "mr"
+    usage: "/mythicrewards"
+    description: "MythicRewards Main Command."
