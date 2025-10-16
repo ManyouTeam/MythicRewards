@@ -6,7 +6,7 @@
 
   <groupId>cn.superiormc</groupId>
   <artifactId>MythicRewards</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>pom</packaging>
 
   <modules>
@@ -114,14 +114,6 @@
           <id>oraxen-releases</id>
           <name>Oraxen Repository</name>
           <url>https://repo.oraxen.com/releases</url>
-      </repository>
-      <repository>
-          <id>techscode</id>
-          <url>https://repo.techscode.com/repository/maven-releases/</url>
-      </repository>
-      <repository>
-          <id>bs-repo-releases</id>
-          <url>https://repo.bsdevelopment.org/releases</url>
       </repository>
       <repository>
           <id>opencollab-snapshot</id>

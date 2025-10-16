@@ -29,7 +29,7 @@ public final class MythicRewards extends JavaPlugin {
             majorVersion = versionParts.length > 1 ? Integer.parseInt(versionParts[1]) : 0;
             minorVersion = versionParts.length > 2 ? Integer.parseInt(versionParts[2]) : 0;
         } catch (Throwable throwable) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicRewards] §cError: Can not get your Minecraft version! Default set to 1.0.0.");
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicRewards] §cError: Can not get your Minecraft version! Default set to 1.0.1.");
         }
         if (CommonUtil.getClass("com.destroystokyo.paper.PaperConfig") && CommonUtil.getMinorVersion(17, 1)) {
             try {

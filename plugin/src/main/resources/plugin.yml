@@ -18,6 +18,7 @@ softdepend:
   - ExecutableItems
   - MythicChanger
   - NBTAPI
+  - LevelledMobs
 commands:
   mythicrewards:
     aliases:

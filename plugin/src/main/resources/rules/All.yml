@@ -20,11 +20,15 @@ general-actions:
       - '&#FFAA00✨Your Rank: &#FF00FF {rank} &#FFFFFF(&#32CD32{damage}/{total-damage}&#FFFFFF | &#1E90FF{percentage}%&#FFFFFF)'
       - '&#FFEE00======================='
   2:
-    type: message
-    message: TEST
+    type: give_item
+    item:
+      material: diamond_block
   3:
-    type: message
-    message: TEST2
+    type: give_item
+    item:
+      material: diamond
+      amount: 6
   4:
-    type: message
-    message: TEST3
+    type: drop_item
+    item:
+      material: diamond_sword

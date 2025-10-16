@@ -1,8 +1,6 @@
 package cn.superiormc.mythicrewards.objects.matchentity;
 
 import org.bukkit.configuration.ConfigurationSection;
-import org.bukkit.entity.Damageable;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 public class EntityHealth extends AbstractMatchEntityRule {

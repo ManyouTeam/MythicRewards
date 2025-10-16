@@ -23,12 +23,19 @@ public class MatchEntityManager {
 
     private void initRules() {
         registerNewRule(new EntityType());
-        registerNewRule(new EntityName());
+        //registerNewRule(new EntityName());
         registerNewRule(new EntityContainsName());
         registerNewRule(new EntityNone());
         registerNewRule(new EntityHealth());
+        registerNewRule(new EntityTag());
+        registerNewRule(new EntityPDC());
+        registerNewRule(new Any());
+        registerNewRule(new Not());
         if (CommonUtil.checkPluginLoad("MythicMobs")) {
             registerNewRule(new MythicMobs());
+        }
+        if (CommonUtil.checkPluginLoad("LevelledMobs")) {
+            registerNewRule(new LevelledMobs());
         }
     }
 
