@@ -1,6 +1,3 @@
-# MythicRewards
-
-Welcome to MythicRewards project, this is Infinite Possibilities Mob Kill Reward Plugin for spigot.
 # ✨ Welcome to **MythicRewards**
 
 > **MythicRewards** is a rule-based entity kill reward plugin that makes your combat and loot systems more dynamic and engaging!
