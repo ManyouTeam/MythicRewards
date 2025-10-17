@@ -184,19 +184,13 @@ public class TextUtil {
     }
 
     public static String parse(String text, Player player) {
-        if (CommonUtil.checkPluginLoad("PlaceholderAPI")) {
-            return PlaceholderAPI.setPlaceholders(player, parse(text));
-        }
-        else {
-            return parse(text);
-        }
+        return parse(withPAPI(text, player));
     }
 
     public static String withPAPI(String text, Player player) {
         if (text.contains("%") && CommonUtil.checkPluginLoad("PlaceholderAPI")) {
             return PlaceholderAPI.setPlaceholders(player, text);
-        }
-        else {
+        } else {
             return text;
         }
     }

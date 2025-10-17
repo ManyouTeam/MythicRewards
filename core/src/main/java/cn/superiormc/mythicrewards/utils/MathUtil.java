@@ -1,0 +1,33 @@
+package cn.superiormc.mythicrewards.utils;
+
+
+import cn.superiormc.mythicrewards.managers.ConfigManager;
+import cn.superiormc.mythicrewards.managers.ErrorManager;
+import redempt.crunch.Crunch;
+
+public class MathUtil {
+
+    public static int scale = ConfigManager.configManager.getInt("math.scale", 2);
+
+    public static double doCalculate(String mathStr) {
+        return doCalculate(mathStr, scale);
+    }
+
+    public static double doCalculate(String mathStr, int scale) {
+        try {
+            if (!ConfigManager.configManager.getBoolean("math.enabled")) {
+                return Double.parseDouble(mathStr);
+            }
+            return Crunch.evaluateExpression(mathStr);
+        }
+        catch (NumberFormatException ep) {
+            if (ConfigManager.configManager.getBoolean("debug")) {
+                ep.printStackTrace();
+            }
+            ErrorManager.errorManager.sendErrorMessage("§cError: Your number option value " +
+                    mathStr + " can not be read as a number, maybe" +
+                    "set math.enabled to false in config.yml maybe solve this problem!");
+            return 0;
+        }
+    }
+}

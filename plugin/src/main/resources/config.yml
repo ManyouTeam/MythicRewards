@@ -19,3 +19,7 @@ placeholders:
     unknown-player: 'Unknown'
     damage-format: "%.0f"
     percentage-format: "%.1f"
+
+math:
+  enabled: true
+  scale: 2

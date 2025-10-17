@@ -3,6 +3,7 @@ package cn.superiormc.mythicrewards.objects;
 import cn.superiormc.mythicrewards.listeners.TrackerResult;
 import cn.superiormc.mythicrewards.managers.ConfigManager;
 import cn.superiormc.mythicrewards.utils.CommonUtil;
+import cn.superiormc.mythicrewards.utils.MathUtil;
 import cn.superiormc.mythicrewards.utils.TextUtil;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
@@ -76,11 +77,11 @@ public abstract class AbstractSingleRun {
     }
 
     public double getDouble(String path) {
-        return section.getDouble(path);
+        return MathUtil.doCalculate(section.getString(path));
     }
 
     public double getDouble(String path, Player player, TrackerResult result) {
-        return Double.parseDouble(replacePlaceholder(section.getString(path), player, result));
+        return MathUtil.doCalculate(replacePlaceholder(section.getString(path), player, result));
     }
 
     public boolean getBoolean(String path, boolean defaultValue) {
