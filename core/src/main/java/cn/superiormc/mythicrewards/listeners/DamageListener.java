@@ -45,6 +45,9 @@ public class DamageListener implements Listener {
         if (singleRule.isPreventVanillaDrops()) {
             event.getDrops().clear();
         }
+        if (singleRule.getDropExp() > 0) {
+            event.setDroppedExp(singleRule.getDropExp());
+        }
 
         ConfigManager.configManager.removeEntityMatchMap(boss);
     }

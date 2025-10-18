@@ -8,7 +8,6 @@ import cn.superiormc.mythicrewards.utils.TextUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
@@ -26,6 +25,8 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
 
     private final ObjectAction generalActions;
 
+    private final ObjectAction allActions;
+
     private Collection<ObjectAction> packActions;
 
     private final DamageTracker damageTracker;
@@ -34,13 +35,17 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
 
     private final boolean preventVanillaDrops;
 
+    private final int dropExp;
+
     public ObjectSingleRule(String id, YamlConfiguration config) {
         this.id = id;
         this.config = config;
         this.generalActions = new ObjectAction(config.getConfigurationSection("general-actions"));
+        this.allActions = new ObjectAction(config.getConfigurationSection("all-actions"));
         this.damageTracker = new DamageTracker(this);
         this.timeOutTicks = config.getLong("time-out-ticks", 6000);
         this.preventVanillaDrops = config.getBoolean("prevent-vanilla-drops");
+        this.dropExp = config.getInt("drop-exp", -1);
         initPackActions();
         //this.condition = new ObjectCondition(config.getConfigurationSection("conditions"));
     }
@@ -88,6 +93,11 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
             generalActions.runAllActions(tempVal1, trackerResult);
         }
 
+        Collection<? extends Player> players = Bukkit.getOnlinePlayers();
+        for (Player tempVal2 : players) {
+            allActions.runAllActions(tempVal2, trackerResult);
+        }
+
         for (ObjectAction action : packActions) {
             int amount = action.getAmount();
             if (amount <= 0 || allPlayers.isEmpty()) {
@@ -133,10 +143,6 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
         damageTracker.clearDamage(entity);
     }
 
-    public ObjectAction getGeneralActions() {
-        return generalActions;
-    }
-
     public String getId() {
         return id;
     }
@@ -151,6 +157,10 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
 
     public boolean isPreventVanillaDrops() {
         return preventVanillaDrops;
+    }
+
+    public int getDropExp() {
+        return dropExp;
     }
 
     @Override

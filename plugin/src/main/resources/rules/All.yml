@@ -6,6 +6,7 @@ match-entity:
 time-out-ticks: 6000
 
 prevent-vanilla-drops: false
+drop-exp: -1
 
 general-actions:
   1:

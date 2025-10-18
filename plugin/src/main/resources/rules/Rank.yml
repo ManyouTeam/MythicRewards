@@ -5,6 +5,9 @@ match-entity:
 # Means 5 minutes, 20 ticks = 1 second
 time-out-ticks: 6000
 
+prevent-vanilla-drops: false
+drop-exp: -1
+
 general-actions:
   1:
     type: message
