@@ -4,6 +4,7 @@ import cn.superiormc.mythicrewards.managers.ConfigManager;
 import cn.superiormc.mythicrewards.objects.rule.ObjectSingleRule;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
@@ -13,11 +14,20 @@ public class DamageListener implements Listener {
 
     @EventHandler
     public void onBossDamage(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player player)) {
+        if (!(event.getEntity() instanceof LivingEntity boss)) {
             return;
         }
 
-        if (!(event.getEntity() instanceof LivingEntity boss)) {
+        Player player = null;
+        if (event.getDamager() instanceof Player p) {
+            player = p;
+        } else if (event.getDamager() instanceof Projectile projectile) {
+            if (projectile.getShooter() instanceof Player shooter) {
+                player = shooter;
+            }
+        }
+
+        if (player == null) {
             return;
         }
 

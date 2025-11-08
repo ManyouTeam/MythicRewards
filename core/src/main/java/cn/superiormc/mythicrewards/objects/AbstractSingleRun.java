@@ -41,6 +41,7 @@ public abstract class AbstractSingleRun {
                 "entity-pitch", String.valueOf(result.getEntity().getLocation().getPitch()),
                 "entity-yaw", String.valueOf(result.getEntity().getLocation().getYaw()),
                 "entity", result.getEntityName(),
+                "entity-health", String.valueOf(result.getEntity().getHealth()),
                 "total-damage", String.format(ConfigManager.configManager.getString("placeholders.result.damage-format"), result.getTotalDamage()),
                 "rank", String.valueOf(result.getPlayerRank(player)),
                 "damage", String.format(ConfigManager.configManager.getString("placeholders.result.damage-format"), result.getPlayerDamage(player)),

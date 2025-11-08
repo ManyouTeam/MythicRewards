@@ -39,6 +39,8 @@ public interface SpecialMethodUtil {
 
     void sendMessage(Player player, String text);
 
+    void sendTitle(Player player, String title, String subTitle, int fadeIn, int stay, int fadeOut);
+
     String legacyParse(String text);
 
     String getItemName(ItemMeta meta);

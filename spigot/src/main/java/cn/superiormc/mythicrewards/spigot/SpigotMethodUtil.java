@@ -148,6 +148,11 @@ public class SpigotMethodUtil implements SpecialMethodUtil {
     }
 
     @Override
+    public void sendTitle(Player player, String title, String subTitle, int fadeIn, int stay, int fadeOut) {
+        player.sendTitle(title, subTitle, fadeIn, stay, fadeOut);
+    }
+
+    @Override
     public String legacyParse(String text) {
         if (text == null)
             return "";
