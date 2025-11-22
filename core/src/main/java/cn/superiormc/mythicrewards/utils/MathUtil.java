@@ -7,13 +7,7 @@ import redempt.crunch.Crunch;
 
 public class MathUtil {
 
-    public static int scale = ConfigManager.configManager.getInt("math.scale", 2);
-
     public static double doCalculate(String mathStr) {
-        return doCalculate(mathStr, scale);
-    }
-
-    public static double doCalculate(String mathStr, int scale) {
         try {
             if (!ConfigManager.configManager.getBoolean("math.enabled")) {
                 return Double.parseDouble(mathStr);
@@ -30,4 +24,5 @@ public class MathUtil {
             return 0;
         }
     }
+
 }

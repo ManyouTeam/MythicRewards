@@ -6,8 +6,9 @@ import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Color;
 import org.bukkit.Location;
 import org.bukkit.NamespacedKey;
-import org.bukkit.entity.Player;
+import org.bukkit.entity.*;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.projectiles.ProjectileSource;
 
 import java.io.File;
 import java.lang.reflect.Method;
@@ -153,5 +154,60 @@ public class CommonUtil {
                 player.getWorld().dropItem(player.getLocation(), result.get(id));
             }
         }
+    }
+
+    public static Player getDamager(Entity damager) {
+
+        if (damager instanceof Player) {
+            return (Player) damager;
+        }
+
+        if (damager instanceof Projectile projectile) {
+            ProjectileSource shooter = projectile.getShooter();
+            if (shooter instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof TNTPrimed tnt) {
+            Entity source = tnt.getSource();
+            if (source instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof AreaEffectCloud cloud) {
+            ProjectileSource source = cloud.getSource();
+            if (source instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof Tameable tameable) {
+            AnimalTamer owner = tameable.getOwner();
+            if (owner instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof FishHook hook) {
+            if (hook.getShooter() instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof LightningStrike lightning) {
+            if (lightning.getCausingEntity() instanceof Player player) {
+                return player;
+            }
+        }
+
+        if (damager instanceof Fireball fireball) {
+            if (fireball.getShooter() instanceof Player player) {
+                return player;
+            }
+        }
+
+        return null;
     }
 }

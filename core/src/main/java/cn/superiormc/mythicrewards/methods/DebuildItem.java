@@ -1,8 +1,7 @@
 package cn.superiormc.mythicrewards.methods;
 
-import cn.superiormc.mythicchanger.MythicChanger;
 import cn.superiormc.mythicchanger.manager.ConfigManager;
-import cn.superiormc.mythicchanger.manager.ErrorManager;
+import cn.superiormc.mythicrewards.managers.ErrorManager;
 import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.HookManager;
 import cn.superiormc.mythicrewards.utils.CommonUtil;
@@ -354,7 +353,7 @@ public class DebuildItem {
                 } else {
                     Field field = skullMeta.getClass().getDeclaredField("profile");
                     field.setAccessible(true);
-                    if (MythicChanger.newSkullMethod) {
+                    if (MythicRewards.newSkullMethod) {
                         Object playerProfile = field.get(skullMeta);
                         if (playerProfile != null) {
                             Field field2 = playerProfile.getClass().getDeclaredField("f");

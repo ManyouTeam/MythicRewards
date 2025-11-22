@@ -2,31 +2,25 @@ package cn.superiormc.mythicrewards.listeners;
 
 import cn.superiormc.mythicrewards.managers.ConfigManager;
 import cn.superiormc.mythicrewards.objects.rule.ObjectSingleRule;
+import cn.superiormc.mythicrewards.utils.CommonUtil;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 
 public class DamageListener implements Listener {
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onBossDamage(EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof LivingEntity boss)) {
             return;
         }
 
-        Player player = null;
-        if (event.getDamager() instanceof Player p) {
-            player = p;
-        } else if (event.getDamager() instanceof Projectile projectile) {
-            if (projectile.getShooter() instanceof Player shooter) {
-                player = shooter;
-            }
-        }
-
+        Player player = CommonUtil.getDamager(event.getDamager());
         if (player == null) {
             return;
         }
@@ -39,7 +33,7 @@ public class DamageListener implements Listener {
         singleRule.addDamage(boss, player, event.getDamage());
     }
 
-    @EventHandler
+    @EventHandler(priority = EventPriority.MONITOR)
     public void onBossDeath(EntityDeathEvent event) {
         LivingEntity boss = event.getEntity();
 

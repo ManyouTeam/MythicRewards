@@ -84,8 +84,17 @@ public class BuildItem {
             }
         }
 
-        int amount = section.getInt("amount");
         // Amount
+        int amount;
+        String[] element = section.getString("amount", "1").split("~");
+        if (element.length == 1) {
+            amount = Integer.parseInt(element[0]);
+        } else {
+            int min = Integer.parseInt(element[0]);
+            int max = Integer.parseInt(element[1]);
+            Random random = new Random();
+            amount = random.nextInt(max - min + 1) + min;
+        }
         if (amount > 0) {
             item.setAmount(amount);
         }
