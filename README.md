@@ -57,6 +57,7 @@ You can **create your own rule logic** using the plugin’s flexible configurati
 > - **UltimateShop**
 > - **MythicPrefixes**
 > - **MythicTotem**
+> - **MythicChanger**
 
 ---
 

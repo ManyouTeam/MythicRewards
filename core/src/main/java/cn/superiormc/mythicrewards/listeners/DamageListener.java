@@ -1,11 +1,12 @@
 package cn.superiormc.mythicrewards.listeners;
 
+import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.ConfigManager;
 import cn.superiormc.mythicrewards.objects.rule.ObjectSingleRule;
 import cn.superiormc.mythicrewards.utils.CommonUtil;
+import cn.superiormc.mythicrewards.utils.SchedulerUtil;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
-import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -25,12 +26,21 @@ public class DamageListener implements Listener {
             return;
         }
 
-        ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRule(boss);
-        if (singleRule == null) {
-            return;
+        if (MythicRewards.isFolia) {
+            SchedulerUtil.runSync(boss, () -> {
+                ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRule(boss);
+                if (singleRule == null) {
+                    return;
+                }
+                singleRule.addDamage(boss, player, event.getDamage());
+            });
+        } else {
+            ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRule(boss);
+            if (singleRule == null) {
+                return;
+            }
+            singleRule.addDamage(boss, player, event.getDamage());
         }
-
-        singleRule.addDamage(boss, player, event.getDamage());
     }
 
     @EventHandler(priority = EventPriority.MONITOR)
@@ -41,7 +51,7 @@ public class DamageListener implements Listener {
             return;
         }
 
-        ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRule(boss);
+        ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRuleCache(boss);
         if (singleRule == null) {
             return;
         }
@@ -53,6 +63,14 @@ public class DamageListener implements Listener {
             event.setDroppedExp(singleRule.getDropExp());
         }
 
-        ConfigManager.configManager.removeEntityMatchMap(boss);
+
+        if (MythicRewards.isFolia) {
+            SchedulerUtil.runSync(boss, () -> {
+                ConfigManager.configManager.removeEntityMatchMap(boss);
+            });
+        } else {
+            ConfigManager.configManager.removeEntityMatchMap(boss);
+        }
+
     }
 }

@@ -7,7 +7,7 @@ debug: false
 # Support value:
 # NORL = The number of rules limited (up to 8 reward rules)
 # ATL = Action types limited (you can not use drop_item and give_item action)
-# FULL = All features without any limits (require server install PREMIUM version of UltimateShop or MythicTotem or MythicPrefixes)
+# FULL = All features without any limits (require server install PREMIUM version of UltimateShop or MythicTotem or MythicPrefixes or MythicChanger
 license-type: NORL
 
 config-files:

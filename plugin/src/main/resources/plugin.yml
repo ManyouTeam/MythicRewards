@@ -19,6 +19,7 @@ softdepend:
   - MythicChanger
   - NBTAPI
   - LevelledMobs
+  - MythicChanger
 commands:
   mythicrewards:
     aliases:

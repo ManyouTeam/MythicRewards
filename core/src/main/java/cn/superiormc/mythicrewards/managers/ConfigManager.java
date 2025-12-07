@@ -31,7 +31,8 @@ public class ConfigManager {
         config = MythicRewards.instance.getConfig();
         InitManager.initManager.initLicense("cn.superiormc.ultimateshop.UltimateShop",
                 "cn.superiormc.mythicprefixes.MythicPrefixes",
-                "cn.superiormc.mythictotem.MythicTotem");
+                "cn.superiormc.mythictotem.MythicTotem",
+                "cn.superiormc.mythicchanger.MythicChanger");
         initRulesConfigs();
     }
 
@@ -94,6 +95,16 @@ public class ConfigManager {
                 }
                 return rule;
             }
+        }
+        return null;
+    }
+
+    public ObjectSingleRule getEntityMatchRuleCache(LivingEntity entity) {
+        if (entity == null) {
+            return null;
+        }
+        if (entityMatchMap.containsKey(entity)) {
+            return entityMatchMap.get(entity);
         }
         return null;
     }

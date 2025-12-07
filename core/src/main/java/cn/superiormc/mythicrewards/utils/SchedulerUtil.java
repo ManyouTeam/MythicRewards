@@ -3,7 +3,10 @@ package cn.superiormc.mythicrewards.utils;
 import cn.superiormc.mythicrewards.MythicRewards;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitTask;
+
+import java.util.concurrent.CompletableFuture;
 
 public class SchedulerUtil {
 
@@ -36,6 +39,14 @@ public class SchedulerUtil {
         }
     }
 
+    public static void runSync(Entity entity, Runnable task) {
+        if (MythicRewards.isFolia) {
+            entity.getScheduler().run(MythicRewards.instance, scheduledTask -> task.run(), null);
+        } else {
+            Bukkit.getScheduler().runTask(MythicRewards.instance, task);
+        }
+    }
+
     // 在异步线程上运行任务
     public static void runTaskAsynchronously(Runnable task) {
         if (MythicRewards.isFolia) {
@@ -50,6 +61,15 @@ public class SchedulerUtil {
         if (MythicRewards.isFolia) {
             return new SchedulerUtil(Bukkit.getGlobalRegionScheduler().runDelayed(MythicRewards.instance,
                     scheduledTask -> task.run(), delayTicks));
+        } else {
+            return new SchedulerUtil(Bukkit.getScheduler().runTaskLater(MythicRewards.instance, task, delayTicks));
+        }
+    }
+
+    public static SchedulerUtil runTaskLater(Entity entity, Runnable task, long delayTicks) {
+        if (MythicRewards.isFolia) {
+            return new SchedulerUtil(entity.getScheduler().runDelayed(MythicRewards.instance,
+                    scheduledTask -> task.run(), null, delayTicks));
         } else {
             return new SchedulerUtil(Bukkit.getScheduler().runTaskLater(MythicRewards.instance, task, delayTicks));
         }

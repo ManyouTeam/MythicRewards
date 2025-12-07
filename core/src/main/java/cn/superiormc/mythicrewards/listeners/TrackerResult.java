@@ -2,6 +2,7 @@ package cn.superiormc.mythicrewards.listeners;
 
 import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.ConfigManager;
+import cn.superiormc.mythicrewards.utils.SchedulerUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class TrackerResult {
 
     private final double totalDamage;
 
-    private final String entityName;
+    private String entityName;
 
     private final List<SinglePlayerResult> results;
 
@@ -32,7 +33,7 @@ public class TrackerResult {
 
         Map<UUID, Double> damageMap = damageTracker.getDamageMap(entity);
         this.totalDamage = damageMap.values().stream().mapToDouble(Double::doubleValue).sum();
-        this.entityName = MythicRewards.methodUtil.getEntityName(entity);
+        this.entityName = damageTracker.getName(entity);
 
         List<Map.Entry<UUID, Double>> sorted = damageMap.entrySet().stream()
                 .sorted((a, b) -> Double.compare(b.getValue(), a.getValue()))
@@ -135,7 +136,9 @@ public class TrackerResult {
             content = content.replace("{damage_" + rank + "}", String.format(ConfigManager.configManager.getString("placeholders.result.damage-format"), r.damage()));
             content = content.replace("{percentage_" + rank + "}", String.format(ConfigManager.configManager.getString("placeholders.result.percentage-format"), r.percentage()));
         }
-        content = content.replace("{entity-name}", entityName);
+        if (entityName != null) {
+            content = content.replace("{entity-name}", entityName);
+        }
         return content;
     }
 }

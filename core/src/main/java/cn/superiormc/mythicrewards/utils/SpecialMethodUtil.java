@@ -10,6 +10,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
 
 public interface SpecialMethodUtil {
 
