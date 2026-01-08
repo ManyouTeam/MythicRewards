@@ -58,5 +58,7 @@ public interface SpecialMethodUtil {
                             int amount,
                             String... args);
 
+    ConfigurationSection serializeItemStack(ItemStack item);
+
     void dropPrivateItem(Player player, ItemStack itemStack, Location loc);
 }
