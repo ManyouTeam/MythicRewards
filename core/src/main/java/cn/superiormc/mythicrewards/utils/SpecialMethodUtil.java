@@ -10,7 +10,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
 
 public interface SpecialMethodUtil {
 
@@ -38,9 +37,17 @@ public interface SpecialMethodUtil {
 
     void setItemLore(ItemMeta meta, List<String> lore, Player player);
 
-    void sendMessage(Player player, String text);
+    void sendChat(Player player, String text);
 
     void sendTitle(Player player, String title, String subTitle, int fadeIn, int stay, int fadeOut);
+
+    void sendActionBar(Player player, String message);
+
+    void sendBossBar(Player player,
+                     String title,
+                     float progress,
+                     String color,
+                     String style);
 
     String legacyParse(String text);
 

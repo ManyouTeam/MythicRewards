@@ -1,6 +1,6 @@
 error:
   save-item-not-found: "&#98FB98[MythicRewards] &cWe can't find this save item called {item}!"
-  args: "&#98FB98[MythicRewards] &cWrong command usage, if you need help, use /shop help!"
+  args: "&#98FB98[MythicRewards] &cWrong command usage, if you need help, please read plugin Wiki!"
   in-game: "&#98FB98[MythicRewards] &cYou have to use this command in game!"
   miss-permission: "&#98FB98[MythicRewards] &cYou don't have permission to use this command!"
 

@@ -40,7 +40,7 @@ public class ActionManager {
         registerNewAction("conditional", new ActionConditional());
         registerNewAction("mythicmobs_spawn", new ActionMythicMobsSpawn());
         if (InitManager.initManager.getLicenseType() != LicenseType.ACTION_TYPE_LIMITED) {
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cLicense ATL do not allow you use give_item and drop_item actions, ignored those action in configs!");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cLicense ATL do not allow you use give_item and drop_item actions, ignored those action in configs!");
             registerNewAction("drop_item", new ActionDropItem());
             registerNewAction("give_item", new ActionGiveItem());
         }

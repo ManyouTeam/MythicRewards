@@ -65,10 +65,10 @@ public class ConfigManager {
                     ruleCaches.add(rule);
                     ruleMap.put(substring, rule);
                     if (ruleMap.size() >= 8 && InitManager.initManager.getLicenseType() == LicenseType.NUMBER_OF_RULES_LIMITED) {
-                        MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cLicense NORL only allows you create up to 8 reward rules, ignored excess rules!");
+                        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cLicense NORL only allows you create up to 8 reward rules, ignored excess rules!");
                         break;
                     }
-                    MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fLoaded reward rule: " + fileName + "!");
+                    TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fLoaded reward rule: " + fileName + "!");
                 }
             }
         }
@@ -89,9 +89,9 @@ public class ConfigManager {
             if (rule.getMatchEntity(entity)) {
                 entityMatchMap.put(entity, rule);
                 if (ConfigManager.configManager.getBoolean("debug")) {
-                    MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded rule cache for entity: " +
+                    TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded rule cache for entity: " +
                             MythicRewards.methodUtil.getEntityName(entity) + " (" + entity.getUniqueId().toString() + "), match rule: " + rule.getId() + "!");
-                    MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow entity cache amount: " + entityMatchMap.size() + "!");
+                    TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow entity cache amount: " + entityMatchMap.size() + "!");
                 }
                 return rule;
             }
@@ -111,9 +111,9 @@ public class ConfigManager {
 
     public void removeEntityMatchMap(LivingEntity entity) {
         if (ConfigManager.configManager.getBoolean("debug")) {
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved rule cache for entity: " +
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved rule cache for entity: " +
                     MythicRewards.methodUtil.getEntityName(entity) + " (" + entity.getUniqueId().toString() + ")!");
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow entity cache amount: " + entityMatchMap.size() + "!");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow entity cache amount: " + entityMatchMap.size() + "!");
         }
         entityMatchMap.remove(entity);
     }

@@ -35,24 +35,24 @@ public final class MythicRewards extends JavaPlugin {
             try {
                 Class<?> paperClass = Class.forName("cn.superiormc.mythicrewards.paper.PaperMethodUtil");
                 methodUtil = (SpecialMethodUtil) paperClass.getDeclaredConstructor().newInstance();
-                MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPaper is found, entering Paper plugin mode...!");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPaper is found, entering Paper plugin mode...!");
             } catch (Throwable throwable) {
-                Bukkit.getConsoleSender().sendMessage(TextUtil.pluginPrefix() + " §cError: The plugin seems break, please download it again from site.");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cError: The plugin seems break, please download it again from site.");
                 Bukkit.getPluginManager().disablePlugin(this);
             }
         } else {
             try {
                 Class<?> spigotClass = Class.forName("cn.superiormc.mythicrewards.spigot.SpigotMethodUtil");
                 methodUtil = (SpecialMethodUtil) spigotClass.getDeclaredConstructor().newInstance();
-                MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fSpigot is found, entering Spigot plugin mode...!");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fSpigot is found, entering Spigot plugin mode...!");
             } catch (Throwable throwable) {
-                Bukkit.getConsoleSender().sendMessage(TextUtil.pluginPrefix() + " §cError: The plugin seems break, please download it again from site.");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cError: The plugin seems break, please download it again from site.");
                 Bukkit.getPluginManager().disablePlugin(this);
             }
         }
         if (CommonUtil.getClass("io.papermc.paper.threadedregions.RegionizedServer")) {
-            Bukkit.getConsoleSender().sendMessage(TextUtil.pluginPrefix() + " §fFolia is found, enabled Folia compatibility feature!");
-            Bukkit.getConsoleSender().sendMessage(TextUtil.pluginPrefix() + " §6Warning: Folia support is not fully test, major bugs maybe found! " +
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fFolia is found, enabled Folia compatibility feature!");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §6Warning: Folia support is not fully test, major bugs maybe found! " +
                     "Please do not use in production environment!");
             isFolia = true;
         }
@@ -69,14 +69,14 @@ public final class MythicRewards extends JavaPlugin {
         new ListenerManager();
         if (!CommonUtil.checkClass("com.mojang.authlib.properties.Property", "getValue") && CommonUtil.getMinorVersion(21, 1)) {
             newSkullMethod = true;
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNew AuthLib found, enabled new skull get method!");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNew AuthLib found, enabled new skull get method!");
         }
-        MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fYour Minecraft version is: 1." + majorVersion + "." + minorVersion + "!");
-        MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPlugin is loaded. Author: PQguanfang.");
+        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fYour Minecraft version is: 1." + majorVersion + "." + minorVersion + "!");
+        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPlugin is loaded. Author: PQguanfang.");
     }
 
     @Override
     public void onDisable() {
-        Bukkit.getConsoleSender().sendMessage(TextUtil.pluginPrefix() + " §fPlugin is disabled. Author: PQguanfang.");
+        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPlugin is disabled. Author: PQguanfang.");
     }
 }

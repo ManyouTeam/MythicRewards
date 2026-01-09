@@ -12,6 +12,7 @@ import cn.superiormc.mythicrewards.utils.SpecialMethodUtil;
 import cn.superiormc.mythicrewards.utils.TextUtil;
 import com.destroystokyo.paper.profile.PlayerProfile;
 import com.destroystokyo.paper.profile.ProfileProperty;
+import net.kyori.adventure.bossbar.BossBar;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
 import net.kyori.adventure.title.Title;
@@ -164,7 +165,7 @@ public class PaperMethodUtil implements SpecialMethodUtil {
     }
 
     @Override
-    public void sendMessage(Player player, String text) {
+    public void sendChat(Player player, String text) {
         if (player == null) {
             Bukkit.getConsoleSender().sendMessage(PaperTextUtil.modernParse(text));
         } else {
@@ -177,12 +178,44 @@ public class PaperMethodUtil implements SpecialMethodUtil {
         if (player == null) {
             return;
         }
-
         player.showTitle(Title.title(PaperTextUtil.modernParse(title, player),
                 PaperTextUtil.modernParse(subTitle, player),
                 Title.Times.times(Ticks.duration(fadeIn),
                         Ticks.duration(stay),
                         Ticks.duration(fadeOut))));
+    }
+
+    @Override
+    public void sendActionBar(Player player, String message) {
+        if (player == null) {
+            return;
+        }
+        player.sendActionBar(cn.superiormc.mythicchanger.paper.utils.PaperTextUtil.modernParse(message, player));
+    }
+
+    @Override
+    public void sendBossBar(Player player,
+                            String title,
+                            float progress,
+                            String color,
+                            String style) {
+        if (player == null) {
+            return;
+        }
+
+        if (style != null && style.equalsIgnoreCase("SOLID")) {
+            style = "PROGRESS";
+        }
+
+        BossBar bar = BossBar.bossBar(
+                title == null ? Component.empty() : cn.superiormc.mythicchanger.paper.utils.PaperTextUtil.modernParse(title, player),
+                Math.max(0f, Math.min(1f, progress)),
+                color == null ? BossBar.Color.PINK : BossBar.Color.valueOf(color.toUpperCase()),
+                style == null ? BossBar.Overlay.PROGRESS : BossBar.Overlay.valueOf(style.toUpperCase())
+        );
+
+        player.showBossBar(bar);
+        cn.superiormc.mythicchanger.utils.SchedulerUtil.runTaskLater(() -> player.hideBossBar(bar), 60);
     }
 
     @Override

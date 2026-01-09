@@ -11,8 +11,10 @@ debug: false
 license-type: NORL
 
 config-files:
-  force-parse-mini-message: true
   language: 'en_US'
+  # Premium version only.
+  per-player-language: true
+  force-parse-mini-message: true
 
 debuild-item-method: 'LEGACY'
 

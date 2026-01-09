@@ -1,7 +1,7 @@
 package cn.superiormc.mythicrewards.objects.actions;
 
-import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.listeners.TrackerResult;
+import cn.superiormc.mythicrewards.utils.TextUtil;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -27,14 +27,14 @@ public class ActionMessage extends AbstractRunAction {
                     if (idx != -1) msg = msg.substring(idx + 1);
                 }
 
-                MythicRewards.methodUtil.sendMessage(player, msg);
+                TextUtil.sendMessage(player, msg);
             }
             return;
         }
 
         String message = singleAction.getString("message", player, result);
         if (message != null && !message.isEmpty()) {
-            MythicRewards.methodUtil.sendMessage(player, message);
+            TextUtil.sendMessage(player, message);
         }
     }
 }

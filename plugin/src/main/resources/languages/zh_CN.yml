@@ -1,0 +1,13 @@
+error:
+  save-item-not-found: "&#98FB98[MythicRewards] &c找不到名为 {item} 的保存物品！"
+  args: "&#98FB98[MythicRewards] &c命令使用错误，如果需要帮助请查看插件Wiki！"
+  in-game: "&#98FB98[MythicRewards] &c你必须在游戏内执行这个命令！"
+  miss-permission: "&#98FB98[MythicRewards] &c你没有权限使用这个命令！"
+
+plugin:
+  reloaded: "&#98FB98[MythicRewards] &f插件已重载！"
+  saved: "&#98FB98[MythicRewards] &f物品已保存！"
+  generated: "&#98FB98[MythicRewards] &f已在插件配置文件夹生成当前手持物品的物品格式，请复制到你的配置文件中！"
+
+command-tab:
+  type-item-id: "[输入你想要的物品 ID]"

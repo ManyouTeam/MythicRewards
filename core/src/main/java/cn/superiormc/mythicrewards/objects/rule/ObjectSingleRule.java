@@ -72,7 +72,7 @@ public class ObjectSingleRule implements Comparable<ObjectSingleRule> {
             ObjectAction tempVal1 = new ObjectAction(config.getConfigurationSection("pack-actions"));
             packActions.add(tempVal1);
         }
-        MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPack actions enabled for rule: " + id + ", total action amount: " + packActions.size() + ".");
+        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fPack actions enabled for rule: " + id + ", total action amount: " + packActions.size() + ".");
 
     }
 

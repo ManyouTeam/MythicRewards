@@ -41,7 +41,7 @@ public class MatchEntityManager {
 
     public void registerNewRule(AbstractMatchEntityRule rule) {
         rules.add(rule);
-        MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fLoaded match entity rule: " + rule.getClass().getSimpleName() + "!");
+        TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fLoaded match entity rule: " + rule.getClass().getSimpleName() + "!");
     }
 
     public boolean getMatch(ConfigurationSection section, LivingEntity entity) {
@@ -53,7 +53,7 @@ public class MatchEntityManager {
         }
         for (AbstractMatchEntityRule rule : rules) {
             if (ConfigManager.configManager.getBoolean("debug")) {
-                MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fChecking rule: " + rule.getClass().getSimpleName() + "!");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fChecking rule: " + rule.getClass().getSimpleName() + "!");
             }
             if (rule.configNotContains(section)) {
                 continue;

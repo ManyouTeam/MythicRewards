@@ -61,7 +61,7 @@ public class HookManager {
     public void registerNewItemHook(String pluginName,
                                     AbstractItemHook itemHook) {
         if (!itemHooks.containsKey(pluginName)) {
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fHooking into " + pluginName + "...");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fHooking into " + pluginName + "...");
             itemHooks.put(pluginName, itemHook);
         }
     }

@@ -32,7 +32,8 @@ public class InitManager {
         resourceOutput("rules/Pack.yml", false);
         resourceOutput("rules/Separate.yml", false);
         resourceOutput("rules/SeparatePack.yml", false);
-        resourceOutput("languages/en_US.yml", false);
+        resourceOutput("languages/en_US.yml", true);
+        resourceOutput("languages/zh_CN.yml", true);
     }
 
     public void initLicense(String... classNames) {
@@ -50,7 +51,7 @@ public class InitManager {
                 boolean value = clazz.getField("freeVersion").getBoolean(null);
                 if (!value) {
                     licenseType = LicenseType.FULL;
-                    MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cFULL license active by " + clazz.getSimpleName() + " plugin, thanks for your support and we hope you have good experience with this plugin!");
+                    TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §cFULL license active by " + clazz.getSimpleName() + " plugin, thanks for your support and we hope you have good experience with this plugin!");
                     break;
                 }
             } catch (Throwable e) {

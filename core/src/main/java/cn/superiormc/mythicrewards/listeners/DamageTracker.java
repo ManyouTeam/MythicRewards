@@ -40,15 +40,15 @@ public class DamageTracker {
             bossCacheClearMap.remove(boss.getUniqueId());
             ConfigManager.configManager.removeEntityMatchMap(boss);
             if (ConfigManager.configManager.getBoolean("debug")) {
-                MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved damage cache for entity: " +
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved damage cache for entity: " +
                         getName(boss) + " (" + boss.getUniqueId().toString() + ")!");
-                MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
+                TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
             }
         }, singleRule.getTimeOutTicks()));
         if (ConfigManager.configManager.getBoolean("debug")) {
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded damage cache for entity: " +
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded damage cache for entity: " +
                     getName(boss) + " (" + boss.getUniqueId().toString() + "), damage value: " + damage + "!");
-            MythicRewards.methodUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
+            TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
         }
     }
 
