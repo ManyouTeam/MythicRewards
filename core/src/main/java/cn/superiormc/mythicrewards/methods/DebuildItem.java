@@ -1,6 +1,6 @@
 package cn.superiormc.mythicrewards.methods;
 
-import cn.superiormc.mythicchanger.manager.ConfigManager;
+import cn.superiormc.mythicrewards.managers.ConfigManager;
 import cn.superiormc.mythicrewards.managers.ErrorManager;
 import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.HookManager;

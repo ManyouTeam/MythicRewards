@@ -1,6 +1,6 @@
 package cn.superiormc.mythicrewards.objects.matchentity;
 
-import cn.superiormc.mythicchanger.utils.CommonUtil;
+import cn.superiormc.mythicrewards.utils.CommonUtil;
 import org.bukkit.NamespacedKey;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;

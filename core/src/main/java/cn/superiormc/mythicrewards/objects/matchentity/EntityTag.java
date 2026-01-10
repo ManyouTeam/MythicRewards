@@ -1,6 +1,6 @@
 package cn.superiormc.mythicrewards.objects.matchentity;
 
-import cn.superiormc.mythicchanger.utils.CommonUtil;
+import cn.superiormc.mythicrewards.utils.CommonUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.Tag;
 import org.bukkit.configuration.ConfigurationSection;

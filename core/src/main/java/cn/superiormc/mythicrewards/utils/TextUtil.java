@@ -16,7 +16,9 @@ import java.util.regex.Pattern;
 public class TextUtil {
 
     public static final Pattern SINGLE_HEX_PATTERN = Pattern.compile("&#([A-Fa-f0-9]{6})");
+
     public static final Pattern GRADIENT_PATTERN = Pattern.compile("&<#([A-Fa-f0-9]{6})>(.*?)&<#([A-Fa-f0-9]{6})>");
+
     public static final Pattern LEGACY_COLOR_PATTERN = Pattern.compile("[&§]([0-9a-frlomn])", Pattern.CASE_INSENSITIVE);
 
     public static String clear(String text) {
@@ -196,7 +198,7 @@ public class TextUtil {
         if (text.matches("[0-9]+")) {
             return text;
         }
-        if (text.contains("%") && cn.superiormc.mythicchanger.utils.CommonUtil.checkPluginLoad("PlaceholderAPI")) {
+        if (text.contains("%") && CommonUtil.checkPluginLoad("PlaceholderAPI")) {
             text = PlaceholderAPI.setPlaceholders(player, text);
         }
         Pattern pattern8 = Pattern.compile("\\{lang:(.*?)}");

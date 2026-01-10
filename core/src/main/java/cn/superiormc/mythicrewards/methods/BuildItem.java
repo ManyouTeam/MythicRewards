@@ -2,7 +2,7 @@ package cn.superiormc.mythicrewards.methods;
 
 import cn.superiormc.mythicchanger.manager.ChangesManager;
 import cn.superiormc.mythicchanger.objects.ObjectAction;
-import cn.superiormc.mythicchanger.utils.NBTUtil;
+import cn.superiormc.mythicrewards.utils.NBTUtil;
 import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.HookManager;
 import cn.superiormc.mythicrewards.managers.ItemManager;

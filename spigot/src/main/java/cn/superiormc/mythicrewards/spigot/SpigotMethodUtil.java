@@ -1,6 +1,6 @@
 package cn.superiormc.mythicrewards.spigot;
 
-import cn.superiormc.mythicchanger.utils.SchedulerUtil;
+import cn.superiormc.mythicrewards.utils.SchedulerUtil;
 import cn.superiormc.mythicrewards.MythicRewards;
 import cn.superiormc.mythicrewards.managers.ErrorManager;
 import cn.superiormc.mythicrewards.utils.SpecialMethodUtil;
@@ -156,7 +156,7 @@ public class SpigotMethodUtil implements SpecialMethodUtil {
         if (player == null) {
             return;
         }
-        player.sendTitle(cn.superiormc.mythicchanger.utils.TextUtil.parse(title, player), cn.superiormc.mythicchanger.utils.TextUtil.parse(subTitle, player), fadeIn, stay, fadeOut);
+        player.sendTitle(TextUtil.parse(title, player), TextUtil.parse(subTitle, player), fadeIn, stay, fadeOut);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class SpigotMethodUtil implements SpecialMethodUtil {
         }
         player.spigot().sendMessage(
                 net.md_5.bungee.api.ChatMessageType.ACTION_BAR,
-                net.md_5.bungee.api.chat.TextComponent.fromLegacyText(cn.superiormc.mythicchanger.utils.TextUtil.parse(message, player))
+                net.md_5.bungee.api.chat.TextComponent.fromLegacyText(TextUtil.parse(message, player))
         );
     }
 
