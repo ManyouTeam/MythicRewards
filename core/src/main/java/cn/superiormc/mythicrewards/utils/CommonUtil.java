@@ -1,6 +1,7 @@
 package cn.superiormc.mythicrewards.utils;
 
 import cn.superiormc.mythicrewards.MythicRewards;
+import cn.superiormc.mythicrewards.managers.LanguageManager;
 import io.lumine.mythic.bukkit.BukkitAdapter;
 import io.lumine.mythic.bukkit.MythicBukkit;
 import org.bukkit.Color;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommonUtil {
 
@@ -65,8 +68,9 @@ public class CommonUtil {
                 MythicRewards.minorVersion >= minorVersion);
     }
 
-    public static String modifyString(String text, String... args) {
+    public static String modifyString(Player player, String text, String... args) {
         for (int i = 0 ; i < args.length ; i += 2) {
+            text = CommonUtil.parseLang(player, text);
             String var = "{" + args[i] + "}";
             if (args[i + 1] == null) {
                 text = text.replace(var, "");
@@ -81,6 +85,7 @@ public class CommonUtil {
     public static List<String> modifyList(Player player, List<String> config, String... args) {
         List<String> resultList = new ArrayList<>();
         for (String s : config) {
+            s = CommonUtil.parseLang(player, s);
             for (int i = 0 ; i < args.length ; i += 2) {
                 String var = "{" + args[i] + "}";
                 if (args[i + 1] == null) {
@@ -99,6 +104,16 @@ public class CommonUtil {
             resultList.add(TextUtil.withPAPI(s, player));
         }
         return resultList;
+    }
+
+    public static String parseLang(Player player, String text) {
+        Pattern pattern8 = Pattern.compile("\\{lang:(.*?)}");
+        Matcher matcher8 = pattern8.matcher(text);
+        while (matcher8.find()) {
+            String placeholder = matcher8.group(1);
+            text = text.replace("{lang:" + placeholder + "}", LanguageManager.languageManager.getStringText(player, "override-lang." + placeholder));
+        }
+        return text;
     }
 
     public static void summonMythicMobs(Location location, String mobID, int level) {

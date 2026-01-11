@@ -27,7 +27,7 @@ public abstract class AbstractSingleRun {
             return "";
         }
 
-        content = CommonUtil.modifyString(content,
+        content = CommonUtil.modifyString(player, content,
                 "world", player.getWorld().getName(),
                 "player-x", String.valueOf(player.getLocation().getX()),
                 "player-y", String.valueOf(player.getLocation().getY()),

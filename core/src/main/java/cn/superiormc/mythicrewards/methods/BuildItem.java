@@ -107,14 +107,14 @@ public class BuildItem {
         // Custom Name
         String displayNameKey = section.getString("name", section.getString("display"));
         if (displayNameKey != null) {
-            MythicRewards.methodUtil.setItemName(meta, CommonUtil.modifyString(displayNameKey, args), player);
+            MythicRewards.methodUtil.setItemName(meta, CommonUtil.modifyString(player, displayNameKey, args), player);
         }
 
         // Item Name
         if (CommonUtil.getMinorVersion(20, 5)) {
             String itemNameKey = section.getString("item-name");
             if (itemNameKey != null) {
-                MythicRewards.methodUtil.setItemItemName(meta, CommonUtil.modifyString(itemNameKey, args), player);
+                MythicRewards.methodUtil.setItemItemName(meta, CommonUtil.modifyString(player, itemNameKey, args), player);
             }
         }
 
