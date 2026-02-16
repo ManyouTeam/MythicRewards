@@ -59,12 +59,16 @@ public class CommonUtil {
         }
     }
 
+    public static boolean getYearVersion(int year, int majorVersion, int minorVersion) {
+        return MythicRewards.yearVersion > year || (MythicRewards.yearVersion == year && MythicRewards.majorVersion >= majorVersion && MythicRewards.minorVersion >= minorVersion);
+    }
+
     public static boolean getMajorVersion(int version) {
-        return MythicRewards.majorVersion >= version;
+        return MythicRewards.yearVersion > 1 || MythicRewards.majorVersion >= version;
     }
 
     public static boolean getMinorVersion(int majorVersion, int minorVersion) {
-        return MythicRewards.majorVersion > majorVersion || (MythicRewards.majorVersion == majorVersion &&
+        return MythicRewards.yearVersion > 1 || MythicRewards.majorVersion > majorVersion || (MythicRewards.majorVersion == majorVersion &&
                 MythicRewards.minorVersion >= minorVersion);
     }
 

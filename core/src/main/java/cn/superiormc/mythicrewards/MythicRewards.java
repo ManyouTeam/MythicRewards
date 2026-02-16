@@ -11,6 +11,8 @@ public final class MythicRewards extends JavaPlugin {
 
     public static MythicRewards instance;
 
+    public static int yearVersion;
+
     public static int majorVersion;
 
     public static int minorVersion;
@@ -26,6 +28,7 @@ public final class MythicRewards extends JavaPlugin {
         instance = this;
         try {
             String[] versionParts = Bukkit.getBukkitVersion().split("-")[0].split("\\.");
+            yearVersion = versionParts.length > 0 ? Integer.parseInt(versionParts[0]) : 1;
             majorVersion = versionParts.length > 1 ? Integer.parseInt(versionParts[1]) : 0;
             minorVersion = versionParts.length > 2 ? Integer.parseInt(versionParts[2]) : 0;
         } catch (Throwable throwable) {
