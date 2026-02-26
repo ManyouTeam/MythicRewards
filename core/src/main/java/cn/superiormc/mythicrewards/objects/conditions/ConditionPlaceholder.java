@@ -2,6 +2,7 @@ package cn.superiormc.mythicrewards.objects.conditions;
 
 import cn.superiormc.mythicrewards.listeners.TrackerResult;
 import cn.superiormc.mythicrewards.managers.ErrorManager;
+import cn.superiormc.mythicrewards.utils.MathUtil;
 import org.bukkit.entity.Player;
 
 public class ConditionPlaceholder extends AbstractCheckCondition {
@@ -21,15 +22,15 @@ public class ConditionPlaceholder extends AbstractCheckCondition {
         try {
             switch (singleCondition.getString("rule")) {
                 case ">=":
-                    return Double.parseDouble(placeholder) >= Double.parseDouble(value);
+                    return MathUtil.doCalculate(placeholder) >= MathUtil.doCalculate(value);
                 case ">":
-                    return Double.parseDouble(placeholder) > Double.parseDouble(value);
+                    return MathUtil.doCalculate(placeholder) > MathUtil.doCalculate(value);
                 case "=":
-                    return Double.parseDouble(placeholder) == Double.parseDouble(value);
+                    return MathUtil.doCalculate(placeholder) == MathUtil.doCalculate(value);
                 case "<":
-                    return Double.parseDouble(placeholder) < Double.parseDouble(value);
+                    return MathUtil.doCalculate(placeholder) < MathUtil.doCalculate(value);
                 case "<=":
-                    return Double.parseDouble(placeholder) <= Double.parseDouble(value);
+                    return MathUtil.doCalculate(placeholder) <= MathUtil.doCalculate(value);
                 case "==":
                     return placeholder.equals(value);
                 case "!=":
