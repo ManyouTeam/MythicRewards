@@ -15,6 +15,9 @@ public class Any extends AbstractMatchEntityRule {
     @Override
     public boolean getMatch(ConfigurationSection section, LivingEntity entity) {
         ConfigurationSection anySection = section.getConfigurationSection("any");
+        if (anySection == null) {
+            return true;
+        }
         Set<String> anyKeys = anySection.getKeys(false);
         if (anyKeys.isEmpty()) {
             return true;
@@ -46,6 +49,6 @@ public class Any extends AbstractMatchEntityRule {
     }
     @Override
     public boolean configNotContains(ConfigurationSection section) {
-        return section.getStringList("entity-tag").isEmpty();
+        return !section.contains("any");
     }
 }
