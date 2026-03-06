@@ -234,22 +234,8 @@ public class CommonUtil {
             }
         }
 
-        if (damager instanceof FishHook hook) {
-            if (hook.getShooter() instanceof Player player) {
-                return player;
-            }
-        }
-
         if (damager instanceof LightningStrike lightning) {
-            if (lightning.getCausingEntity() instanceof Player player) {
-                return player;
-            }
-        }
-
-        if (damager instanceof Fireball fireball) {
-            if (fireball.getShooter() instanceof Player player) {
-                return player;
-            }
+            return lightning.getCausingPlayer();
         }
 
         return null;
