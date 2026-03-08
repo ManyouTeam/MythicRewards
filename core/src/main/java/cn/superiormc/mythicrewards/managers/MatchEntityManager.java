@@ -37,6 +37,10 @@ public class MatchEntityManager {
         if (CommonUtil.checkPluginLoad("LevelledMobs")) {
             registerNewRule(new LevelledMobs());
         }
+        if (CommonUtil.checkPluginLoad("EnchantedMobs")) {
+            registerNewRule(new EntityPowers());
+            registerNewRule(new EntityPowersAmount());
+        }
     }
 
     public void registerNewRule(AbstractMatchEntityRule rule) {
