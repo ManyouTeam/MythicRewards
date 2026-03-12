@@ -15,7 +15,7 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class DamageListener implements Listener {
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBossDamage(EntityDamageByEntityEvent event) {
         if (!(event.getEntity() instanceof LivingEntity boss)) {
             return;
@@ -32,18 +32,18 @@ public class DamageListener implements Listener {
                 if (singleRule == null) {
                     return;
                 }
-                singleRule.addDamage(boss, player, event.getDamage());
+                singleRule.addDamage(boss, player, event.getFinalDamage());
             });
         } else {
             ObjectSingleRule singleRule = ConfigManager.configManager.getEntityMatchRule(boss);
             if (singleRule == null) {
                 return;
             }
-            singleRule.addDamage(boss, player, event.getDamage());
+            singleRule.addDamage(boss, player, event.getFinalDamage());
         }
     }
 
-    @EventHandler(priority = EventPriority.MONITOR)
+    @EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
     public void onBossDeath(EntityDeathEvent event) {
         LivingEntity boss = event.getEntity();
 
