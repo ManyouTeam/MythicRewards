@@ -3,7 +3,6 @@ package cn.superiormc.mythicrewards.managers;
 import cn.superiormc.mythicrewards.objects.matchentity.*;
 import cn.superiormc.mythicrewards.utils.CommonUtil;
 import cn.superiormc.mythicrewards.utils.TextUtil;
-import cn.superiormc.mythicrewards.MythicRewards;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.LivingEntity;
 
@@ -31,6 +30,8 @@ public class MatchEntityManager {
         registerNewRule(new EntityPDC());
         registerNewRule(new Any());
         registerNewRule(new Not());
+        registerNewRule(new Ranged());
+        registerNewRule(new Monster());
         if (CommonUtil.checkPluginLoad("MythicMobs")) {
             registerNewRule(new MythicMobs());
         }

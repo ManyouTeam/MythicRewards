@@ -2,6 +2,7 @@ package cn.superiormc.mythicrewards.objects.actions;
 
 import cn.superiormc.mythicrewards.listeners.TrackerResult;
 import cn.superiormc.mythicrewards.managers.ErrorManager;
+import cn.superiormc.mythicrewards.utils.SchedulerUtil;
 import org.bukkit.Location;
 import org.bukkit.Particle;
 import org.bukkit.entity.Player;
@@ -27,7 +28,7 @@ public class ActionParticle extends AbstractRunAction {
 
         try {
             Particle particle = Particle.valueOf(particleName.toUpperCase());
-            player.getWorld().spawnParticle(particle, loc, count, offsetX, offsetY, offsetZ, speed);
+            SchedulerUtil.runSync(loc, () -> loc.getWorld().spawnParticle(particle, loc, count, offsetX, offsetY, offsetZ, speed));
         } catch (IllegalArgumentException e) {
             ErrorManager.errorManager.sendErrorMessage("§cInvalid particle name: " + particleName);
         }

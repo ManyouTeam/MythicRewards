@@ -11,7 +11,6 @@ import java.util.Objects;
 
 public class LevelledMobs extends AbstractMatchEntityRule {
 
-
     public LevelledMobs() {
         super();
     }

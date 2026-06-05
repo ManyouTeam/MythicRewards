@@ -3,6 +3,7 @@ package cn.superiormc.mythicrewards.utils;
 import cn.superiormc.mythicrewards.MythicRewards;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Entity;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -47,10 +48,18 @@ public class SchedulerUtil {
         }
     }
 
+    public static void runSync(Location location, Runnable task) {
+        if (MythicRewards.isFolia) {
+            Bukkit.getRegionScheduler().run(MythicRewards.instance, location, scheduledTask -> task.run());
+        } else {
+            Bukkit.getScheduler().runTask(MythicRewards.instance, task);
+        }
+    }
+
     // 在异步线程上运行任务
     public static void runTaskAsynchronously(Runnable task) {
         if (MythicRewards.isFolia) {
-            task.run();
+            Bukkit.getAsyncScheduler().runNow(MythicRewards.instance, scheduledTask -> task.run());
         } else {
             Bukkit.getScheduler().runTaskAsynchronously(MythicRewards.instance, task);
         }

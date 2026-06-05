@@ -12,4 +12,4 @@ plugin:
 command-tab:
   type-item-id: "[输入你想要的物品 ID]"
 
-dupe-removed: "&#98FB98[UltimateShop] &f你的背包的一件非法物品已被移除!"
+dupe-removed: "&#98FB98[MythicRewards] &f你的背包的一件非法物品已被移除!"
