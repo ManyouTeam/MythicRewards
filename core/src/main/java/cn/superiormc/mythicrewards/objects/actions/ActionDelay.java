@@ -3,8 +3,11 @@ package cn.superiormc.mythicrewards.objects.actions;
 import cn.superiormc.mythicrewards.listeners.TrackerResult;
 import cn.superiormc.mythicrewards.objects.ObjectAction;
 import cn.superiormc.mythicrewards.utils.SchedulerUtil;
+import org.bukkit.Bukkit;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.entity.Player;
+
+import java.util.UUID;
 
 public class ActionDelay extends AbstractRunAction {
 
@@ -21,6 +24,12 @@ public class ActionDelay extends AbstractRunAction {
         }
         long time = singleAction.getSection().getLong("time");
         ObjectAction action = new ObjectAction(chanceSection);
-        SchedulerUtil.runTaskLater(() -> action.runAllActions(player, result), time);
+        UUID playerId = player.getUniqueId();
+        SchedulerUtil.runTaskLater(() -> {
+            Player onlinePlayer = Bukkit.getPlayer(playerId);
+            if (onlinePlayer != null && onlinePlayer.isOnline()) {
+                action.runAllActions(onlinePlayer, result);
+            }
+        }, time);
     }
 }
