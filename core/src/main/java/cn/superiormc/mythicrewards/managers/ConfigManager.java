@@ -8,7 +8,6 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.MemoryConfiguration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 
 import java.io.File;
@@ -22,7 +21,7 @@ public class ConfigManager {
 
     public Map<String, ObjectSingleRule> ruleMap = new TreeMap<>();
 
-    public Map<Entity, ObjectSingleRule> entityMatchMap = new HashMap<>();
+    public Map<UUID, ObjectSingleRule> entityMatchMap = new HashMap<>();
 
     public Collection<ObjectSingleRule> ruleCaches = new TreeSet<>();
 
@@ -71,19 +70,20 @@ public class ConfigManager {
     }
 
     public boolean containsEntityMatchRuleCache(LivingEntity entity) {
-        return entityMatchMap.containsKey(entity);
+        return entity != null && entityMatchMap.containsKey(entity.getUniqueId());
     }
 
     public ObjectSingleRule getEntityMatchRule(LivingEntity entity) {
         if (entity == null) {
             return null;
         }
-        if (entityMatchMap.containsKey(entity)) {
-            return entityMatchMap.get(entity);
+        UUID entityId = entity.getUniqueId();
+        if (entityMatchMap.containsKey(entityId)) {
+            return entityMatchMap.get(entityId);
         }
         for (ObjectSingleRule rule: ruleCaches) {
             if (rule.getMatchEntity(entity)) {
-                entityMatchMap.put(entity, rule);
+                entityMatchMap.put(entityId, rule);
                 if (ConfigManager.configManager.getBoolean("debug")) {
                     TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded rule cache for entity: " +
                             MythicRewards.methodUtil.getEntityName(entity) + " (" + entity.getUniqueId().toString() + "), match rule: " + rule.getId() + "!");
@@ -99,22 +99,30 @@ public class ConfigManager {
         if (entity == null) {
             return null;
         }
-        if (entityMatchMap.containsKey(entity)) {
-            return entityMatchMap.get(entity);
+        UUID entityId = entity.getUniqueId();
+        if (entityMatchMap.containsKey(entityId)) {
+            return entityMatchMap.get(entityId);
         }
         return null;
     }
 
     public void removeEntityMatchMap(LivingEntity entity) {
+        if (entity == null) {
+            return;
+        }
         if (ConfigManager.configManager.getBoolean("debug")) {
             TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved rule cache for entity: " +
                     MythicRewards.methodUtil.getEntityName(entity) + " (" + entity.getUniqueId().toString() + ")!");
             TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow entity cache amount: " + entityMatchMap.size() + "!");
         }
-        entityMatchMap.remove(entity);
+        removeEntityMatchMap(entity.getUniqueId());
     }
 
-    public Map<Entity, ObjectSingleRule> getEntityMatchMap() {
+    public void removeEntityMatchMap(UUID entityId) {
+        entityMatchMap.remove(entityId);
+    }
+
+    public Map<UUID, ObjectSingleRule> getEntityMatchMap() {
         return entityMatchMap;
     }
 

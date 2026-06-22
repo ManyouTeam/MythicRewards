@@ -15,8 +15,6 @@ import java.util.*;
  */
 public class TrackerResult {
 
-    private final DamageTracker damageTracker;
-
     private final LivingEntity entity;
 
     private final double totalDamage;
@@ -25,10 +23,9 @@ public class TrackerResult {
 
     private final List<SinglePlayerResult> results;
 
-    private final Map<Player, SinglePlayerResult> playerResultCache = new HashMap<>();
+    private final Map<UUID, SinglePlayerResult> playerResultCache = new HashMap<>();
 
     public TrackerResult(DamageTracker damageTracker, LivingEntity entity) {
-        this.damageTracker = damageTracker;
         this.entity = entity;
 
         Map<UUID, Double> damageMap = damageTracker.getDamageMap(entity);
@@ -55,7 +52,7 @@ public class TrackerResult {
             list.add(spr);
 
             if (player != null) {
-                playerResultCache.put(player, spr);
+                playerResultCache.put(uuid, spr);
             }
         }
 
@@ -97,17 +94,26 @@ public class TrackerResult {
     }
 
     public int getPlayerRank(Player player) {
-        SinglePlayerResult r = playerResultCache.get(player);
+        if (player == null) {
+            return -1;
+        }
+        SinglePlayerResult r = playerResultCache.get(player.getUniqueId());
         return r != null ? r.rank() : -1;
     }
 
     public double getPlayerDamage(Player player) {
-        SinglePlayerResult r = playerResultCache.get(player);
+        if (player == null) {
+            return 0.0;
+        }
+        SinglePlayerResult r = playerResultCache.get(player.getUniqueId());
         return r != null ? r.damage() : 0.0;
     }
 
     public double getPlayerPercentage(Player player) {
-        SinglePlayerResult r = playerResultCache.get(player);
+        if (player == null) {
+            return 0.0;
+        }
+        SinglePlayerResult r = playerResultCache.get(player.getUniqueId());
         return r != null ? r.percentage() : 0.0;
     }
 

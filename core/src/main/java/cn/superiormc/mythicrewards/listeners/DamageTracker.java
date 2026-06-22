@@ -27,27 +27,28 @@ public class DamageTracker {
     }
 
     public void addDamage(LivingEntity boss, Player player, double damage) {
-        bossNameMap.put(boss.getUniqueId(), MythicRewards.methodUtil.getEntityName(boss));
+        UUID bossId = boss.getUniqueId();
+        String bossName = MythicRewards.methodUtil.getEntityName(boss);
+        bossNameMap.put(bossId, bossName);
         bossDamageMap
-                .computeIfAbsent(boss.getUniqueId(), k -> new HashMap<>())
+                .computeIfAbsent(bossId, k -> new HashMap<>())
                 .merge(player.getUniqueId(), damage, Double::sum);
-        SchedulerUtil schedulerUtil = bossCacheClearMap.get(boss.getUniqueId());
+        SchedulerUtil schedulerUtil = bossCacheClearMap.remove(bossId);
         if (schedulerUtil != null) {
             schedulerUtil.cancel();
         }
-        bossCacheClearMap.put(boss.getUniqueId(), SchedulerUtil.runTaskLater(boss, () -> {
-            clearDamage(boss);
-            bossCacheClearMap.remove(boss.getUniqueId());
-            ConfigManager.configManager.removeEntityMatchMap(boss);
+        bossCacheClearMap.put(bossId, SchedulerUtil.runTaskLater(boss, () -> {
+            clearDamage(bossId, false);
+            ConfigManager.configManager.removeEntityMatchMap(bossId);
             if (ConfigManager.configManager.getBoolean("debug")) {
                 TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fRemoved damage cache for entity: " +
-                        getName(boss) + " (" + boss.getUniqueId().toString() + ")!");
+                        bossName + " (" + bossId + ")!");
                 TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
             }
         }, singleRule.getTimeOutTicks()));
         if (ConfigManager.configManager.getBoolean("debug")) {
             TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fAdded damage cache for entity: " +
-                    getName(boss) + " (" + boss.getUniqueId().toString() + "), damage value: " + damage + "!");
+                    bossName + " (" + bossId + "), damage value: " + damage + "!");
             TextUtil.sendMessage(null, TextUtil.pluginPrefix() + " §fNow damage cache amount: " + bossDamageMap.size() + "!");
         }
     }
@@ -57,8 +58,16 @@ public class DamageTracker {
     }
 
     public void clearDamage(LivingEntity boss) {
-        bossNameMap.remove(boss.getUniqueId());
-        bossDamageMap.remove(boss.getUniqueId());
+        clearDamage(boss.getUniqueId(), true);
+    }
+
+    private void clearDamage(UUID bossId, boolean cancelTask) {
+        bossNameMap.remove(bossId);
+        bossDamageMap.remove(bossId);
+        SchedulerUtil schedulerUtil = bossCacheClearMap.remove(bossId);
+        if (cancelTask && schedulerUtil != null) {
+            schedulerUtil.cancel();
+        }
     }
 
     public String getName(LivingEntity boss) {
